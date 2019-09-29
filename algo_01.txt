@@ -1,0 +1,6 @@
+- recursive cannot be done without 2 "*"s in the code I think
+- function prototype takes an integer for the number of times the user wants increasing star rows
+- nested for loop, one for columns, one for printing the stars
+- column for loop goes twice the value of the desired increasing rows
+- have an integer for the number of stars to print per row, initialize to 1 and double or half
+    depending on if you are past the halfway point
