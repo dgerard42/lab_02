@@ -1,0 +1,4 @@
+- start with code from the previous karel
+- change coordinates to an int array passed by reference
+- board is a 2d array
+- 
