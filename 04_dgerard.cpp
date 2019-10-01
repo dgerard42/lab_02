@@ -20,17 +20,17 @@ string  turn_left(string karelFacing)
     return "error";
 }
 
-void    display_map(int coords[], char board[][], string karelFacing)
+void    display_map(int coords[], char board[][BOARD_SIZE], string direction)
 {
-    cout << ">>Karel is at x=" << karelColumn << " y=" << karelRow;
-    cout << " and they are facing " << karelFacing << "." << endl;
+    cout << ">>Karel is at x=" << coords[X] << " y=" << coords[Y];
+    cout << " and they are facing " << direction << "." << endl;
     cout << "###############" << endl;
-    for (int row; row < BOARD_SIZE; row++;)
+    for (int row; row < BOARD_SIZE; row++)
     {
         cout << "#";
         for (int column; column < BOARD_SIZE; column++)
         {
-            cout << 
+            cout << "";
         }
         cout << "#";
     }
@@ -38,27 +38,27 @@ void    display_map(int coords[], char board[][], string karelFacing)
     return;
 }
 
-void    board_init(char board[][], int coords[])
+void    board_init(char board[][BOARD_SIZE], int coords[])
 {
-    for (int row; row < BOARD_SIZE; row++;)
+    for (int row; row < BOARD_SIZE; row++)
         for (int column; column < BOARD_SIZE; column++)
-            board[row][column] = ".";
-    board[coords[1]][coords[0]] = "O";
+            board[row][column] = '.';
+    board[coords[1]][coords[0]] = 'O';
     cout << ">>Hello, I am Karel v 0.1. Please enter a command: move();,";
     cout << " turnLeft();, or quit" << endl;
 }
 
-int     move(int coords[])
+int     move(int coords[], string direction)
 {
-    if (karelFacing == "east")
+    if (direction == "east")
         coords[X]++;
-    else if (karelFacing == "west")
+    else if (direction == "west")
         coords[X]--;
-    else if (karelFacing == "north")
+    else if (direction == "north")
         coords[Y]++;
-    else if (karelFacing == "south")
+    else if (direction == "south")
         coords[Y]--;
-    if (coords[X] >= BOARD_SIZE || karelRow[Y] < 0 || karelColumn[X] >= BOARD_SIZE || karelRow[Y] < 0)
+    if (coords[X] >= BOARD_SIZE || coords[Y] < 0 || coords[X] >= BOARD_SIZE || coords[Y] < 0)
     {
         cout << ">>ouch. I have crashed. shutting down" << endl;
         return 1;
@@ -71,18 +71,18 @@ int     main()
     int     error = 0;
     int     coords[2] = {0,0};
     char    board[BOARD_SIZE + 1][BOARD_SIZE + 1];
-    string  karelFacing = "east";
+    string  direction = "east";
     string  input = "startup";
 
     board_init(board);
-    while (karelFacing != "quit" && error == 0)
+    while (error == 0)
     {
         cin >> input;
         if (input == "move();")
-            error = move(coords);
+            error = move(coords[], direction);
         else if (input == "turnLeft();")
-            karelFacing = turnLeft(karelFacing);
-        else if (input == "quit")
+            direction = turn_left(direction);
+        else if (input == "quit();")
         {
             cout << ">>goodbye friend" << endl;
             break;
@@ -90,9 +90,9 @@ int     main()
         else
         {
             cout << ">>Please enter one of the valid commands, which are as";
-            cout << " follows: move();, turnLeft();, quit" << endl;
+            cout << " follows: move();, turnLeft();, quit();" << endl;
         }
-        displayMap(karelRow, karelColumn, karelFacing);
+        display_map(karelRow, karelColumn, direction);
     }
     return 0;
 }
