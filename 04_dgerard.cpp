@@ -7,6 +7,16 @@ const int BOARD_SIZE = 15;
 const int X = 1;
 const int Y = 0;
 
+void    put_beeper(char board[][BOARD_SIZE], int coords[])
+{
+    board[coords[Y]][coords[X]] = 'X';
+}
+
+void    pick_beeper(char board[][BOARD_SIZE], int coords[])
+{
+    board[coordsY][coords[X] = '.';
+}
+
 string  turn_left(string karelFacing)
 {
     if (karelFacing == "east")
@@ -24,29 +34,31 @@ void    display_map(int coords[], char board[][BOARD_SIZE], string direction)
 {
     cout << ">>Karel is at x=" << coords[X] << " y=" << coords[Y];
     cout << " and they are facing " << direction << "." << endl;
-    cout << "###############" << endl;
-    for (int row; row < BOARD_SIZE; row++)
+    cout << "#################" << endl;
+    for (int row = 0; row < BOARD_SIZE; row++)
     {
         cout << "#";
-        for (int column; column < BOARD_SIZE; column++)
+        for (int column = 0; column < BOARD_SIZE; column++)
         {
-            cout << "";
+            if (column == coords[X] && row == coords[Y])
+                cout << 'O';
+            else
+                cout << board[row][column];
         }
-        cout << "#";
+        cout << "#" << endl;
     }
-    cout << "###############" << endl;
+    cout << "#################" << endl;
     return;
 }
 
-void    board_init(char board[][BOARD_SIZE], int coords[])
+void    board_init(char board[][BOARD_SIZE])
 {
-    for (int row; row < BOARD_SIZE; row++)
-        for (int column; column < BOARD_SIZE; column++)
+    for (int row = 0; row < BOARD_SIZE; row++){
+        for (int column = 0; column < BOARD_SIZE; column++){
             board[row][column] = '.';
-    board[coords[1]][coords[0]] = 'O';
-    cout << ">>Hello, I am Karel v 0.1. Please enter a command: move();,";
-    cout << " turnLeft();, or quit" << endl;
-}
+        }
+    }
+    }
 
 int     move(int coords[], string direction)
 {
@@ -66,22 +78,18 @@ int     move(int coords[], string direction)
     return 0;
 }
 
-int     main()
+int     cylce_karel()
 {
-    int     error = 0;
-    int     coords[2] = {0,0};
-    char    board[BOARD_SIZE + 1][BOARD_SIZE + 1];
-    string  direction = "east";
-    string  input = "startup";
+    int error = 0;
 
-    board_init(board);
     while (error == 0)
     {
         cin >> input;
         if (input == "move();")
-            error = move(coords[], direction);
+            error = move(coords, direction);
         else if (input == "turnLeft();")
             direction = turn_left(direction);
+        else if (input == )
         else if (input == "quit();")
         {
             cout << ">>goodbye friend" << endl;
@@ -92,7 +100,22 @@ int     main()
             cout << ">>Please enter one of the valid commands, which are as";
             cout << " follows: move();, turnLeft();, quit();" << endl;
         }
-        display_map(karelRow, karelColumn, direction);
+        display_map(coords, board, direction);
     }
+    return 0; 
+}
+
+
+int     main()
+{
+    int     coords[2] = {0,0};
+    char    board[BOARD_SIZE][BOARD_SIZE];
+    string  direction = "east";
+    string  input = "startup";
+    
+    board_init(board);
+    cout << ">>Hello, I am Karel v 0.1. Please enter a command: move();,";
+    cout << " turnLeft();, or quit();" << endl;
+    cylce_karel(coords, board);
     return 0;
 }
