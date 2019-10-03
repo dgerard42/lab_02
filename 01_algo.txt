@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                   .--.                       #
+#    01_algo.txt                                 __/ o  ".                     #
+#                                               `  ),    "-.                   #
+#    By: dany <github.com/dgerard42>               |;;,      "-._              #
+#                                                  ';;;,,    ",_ "=-._         #
+#    Created: 2019/10/03 10:45:38 by dany            ':;;;;,,..-``"-._`"-.     #
+#    Updated: 2019/10/03 10:45:41 by dany              _/_/`           `'"`    #
+#                                                                              #
+# **************************************************************************** #
+
 - recursive cannot be done without 2 "*"s in the code I think
 - function prototype takes an integer for the number of times the user wants increasing star rows
 - nested for loop, one for columns, one for printing the stars

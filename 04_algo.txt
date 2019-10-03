@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                   .--.                       #
+#    04_algo.txt                                 __/ o  ".                     #
+#                                               `  ),    "-.                   #
+#    By: dany <github.com/dgerard42>               |;;,      "-._              #
+#                                                  ';;;,,    ",_ "=-._         #
+#    Created: 2019/10/03 10:46:16 by dany            ':;;;;,,..-``"-._`"-.     #
+#    Updated: 2019/10/03 10:46:18 by dany              _/_/`           `'"`    #
+#                                                                              #
+# **************************************************************************** #
+
 - start with code from the previous karel
 - change coordinates to an int array passed by reference
 - board is a 2d array
