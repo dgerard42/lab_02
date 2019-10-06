@@ -6,8 +6,19 @@
 #    By: dany <github.com/dgerard42>               |;;,      "-._              #
 #                                                  ';;;,,    ",_ "=-._         #
 #    Created: 2019/10/03 10:46:33 by dany            ':;;;;,,..-``"-._`"-.     #
-#    Updated: 2019/10/03 10:46:35 by dany              _/_/`           `'"`    #
+#    Updated: 2019/10/05 22:07:26 by dany              _/_/`           `'"`    #
 #                                                                              #
 # **************************************************************************** #
 
+- create array
+- array 1 which contains the values that are all the lower end of the limit
+- start for loop for 10,000 loops
+- get random number btwn 0 and 1
+- create copy of that number
+- multiply copy by 10
+- chop off decimals of copy and make a whole number
+- add one to copy
+- go to array[index] where index is the calculation saved in copy
 
+- print the graph
+- modulo all the array values by 50 so that all bars are no higher than 50 characters
