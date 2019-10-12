@@ -6,7 +6,7 @@
 /*   By: dany <github.com/dgerard42>               |;;,      "-._             */
 /*                                                 ';;;,,    ",_ "=-._        */
 /*   Created: 2019/10/03 10:46:44 by dany            ':;;;;,,..-``"-._`"-.    */
-/*   Updated: 2019/10/10 22:22:26 by dany              _/_/`           `'"`   */
+/*   Updated: 2019/10/11 12:23:15 by dany              _/_/`           `'"`   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,16 @@ void        makeGraph(int counters[], string graph[]){
 
     int hashtags = 0;
 
-    for (int row = NUM_COUNTERS - 1; row > 0; row--){
-        cout << counters[row] << "HERE";
+    for (int row = 0; row < NUM_COUNTERS; row++){
         hashtags = (counters[row] % 50);
-        cout << hashtags << " here";
         graph[hashtags + 1][row] = '_';
         while (hashtags > 0) {
-            graph[hashtags][row] = '#';
+            graph[MAX_HEIGHT - hashtags][row] = '#';
             hashtags--;
         }
     }
     return;
 }
-
-void        makeGraph(int counters[]
 
 void        graphManage(string graph[], string command){
     
