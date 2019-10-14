@@ -6,7 +6,7 @@
 /*   By: dany <github.com/dgerard42>               |;;,      "-._             */
 /*                                                 ';;;,,    ",_ "=-._        */
 /*   Created: 2019/10/03 10:46:44 by dany            ':;;;;,,..-``"-._`"-.    */
-/*   Updated: 2019/10/11 12:23:15 by dany              _/_/`           `'"`   */
+/*   Updated: 2019/10/13 21:53:03 by dany              _/_/`           `'"`   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void        makeGraph(int counters[], string graph[]){
 void        graphManage(string graph[], string command){
     
     for (int row = 0; row < MAX_HEIGHT; row++){
-        for (int column = 0; column < NUM_COUNTERS; column++){
+//        cout << "HERE0" << endl;
+        for (int column = 0; column < NUM_COUNTERS + 8; column++){
             if (command == "init")
                 graph[row][column] = '.';
             else if (command == "print")
@@ -72,6 +73,7 @@ int         main(){
 
     createRandoms(counters);
     graphManage(graph, "init");
+  //  cout << "HERE1" << endl;
     makeGraph(counters, graph);
     graphManage(graph, "print");
     return 0;

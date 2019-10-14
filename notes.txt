@@ -1,0 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                   .--.                       #
+#    notes.txt                                   __/ o  ".                     #
+#                                               `  ),    "-.                   #
+#    By: dany <github.com/dgerard42>               |;;,      "-._              #
+#                                                  ';;;,,    ",_ "=-._         #
+#    Created: 2019/10/13 23:21:12 by dany            ':;;;;,,..-``"-._`"-.     #
+#    Updated: 2019/10/13 23:28:24 by dany              _/_/`           `'"`    #
+#                                                                              #
+# **************************************************************************** #
+
+_____QUESTIONS_____
+- for 7a, what is maxIndex??
+    - how am I supposed to iterate from the left if I don't know maxIndex
+    - I have assumed that n is from the left on, even if I am to search from
+        the right
+- what is going on with my string array? why can't I add more than 17 chars to
+    it without serious problems? am I doing this comletely wrong?
+    - how can I set the size of all of my strings for my string array?
+    - could not find this on google seemingly
