@@ -6,7 +6,7 @@
 /*   By: dany <github.com/dgerard42>               |;;,      "-._             */
 /*                                                 ';;;,,    ",_ "=-._        */
 /*   Created: 2019/10/13 21:54:00 by dany            ':;;;;,,..-``"-._`"-.    */
-/*   Updated: 2019/10/15 13:33:45 by dany              _/_/`           `'"`   */
+/*   Updated: 2019/10/16 21:44:20 by dany              _/_/`           `'"`   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 using namespace std;
 
 /*
-   
+
 int         longestRun(int arr[], int arraySize){
     
     int     longestRun = 0;
@@ -31,11 +31,36 @@ int         localMaxima(int arr[], int maxima[], int size){
     return globalMax;
 }
 
+*/
+
 void        oddFirst(int arr[], int arraySize){
-    
+
+    int temp = 0;
+
+    for(int index = 0; index < arraySize; index++){
+        if (arr[index] % 2 == 1){
+            for (int search = 0; search < arraySize; search++){
+                if (arr[search] % 2 == 1 && arr[index] <= arr[search]){
+                    for (int shift = 0; (shift + index) < arraySize && (shift + search) < arraySize; shift++){
+                        temp = arr[search + shift];
+                        arr[search + shift] = arr[index + shift];
+                        arr[index + shift] = temp;
+                    } 
+                }else if (arr[search] % 2 == 0){
+                    temp = arr[search];
+                    arr[search] = arr[index];
+                    arr[index] = temp;
+                }  
+            }
+        } 
+    }
+    return;
 }
 
-*/
+void        oddFirst(int arr[], int arraySize){
+
+    i       
+}
 
 void        reverse(int arr[], int arraySize){
     
@@ -62,6 +87,15 @@ int         search(int arr[], int n, int val, bool left){
 
 // TEST FUNCTIONS
 
+void        printArray(int arr[], int arraySize){
+
+    for (int index = 0; index < arraySize; index++){
+        cout << arr[index] << " ";
+    }
+    cout << endl;
+    return;
+}
+
 void        printResult(int error, string name, int testNum){
     
     if (error == 1)
@@ -83,20 +117,42 @@ void        testLocalMaxima(){
     return;
 } 
 
-void        testOddFirst(){
-
-    return;
-}
 */
 
-void        printArray(int arr[], int arraySize){
+void        testOddFirst(){
 
-    for (int index = 0; index < arraySize; index++){
-        cout << arr[index] << " ";
-    }
-    cout << endl;
+    string      name = "oddFirst()";
+    int         arr00[] = {1,4,6,5,2,7,10,4};
+    int         arr01[] = {0, -42, -985495, 1293812983, 00, 333333333};
+    int         arr02[] = {0};
+    int         arr03[] = {3, 3, 3, 3, 3, 3, 3, 3, 3};
+    int         arr04[] = {0,1,2,3,4,5,6,7,8};
+
+    cout << "_____ARRAY 00_____" << endl;
+    printArray(arr00, 8);
+    oddFirst(arr00, 8);
+    printArray(arr00, 8);    
+    cout << "_____ARRAY 01_____" << endl;
+    printArray(arr01, 6);
+    oddFirst(arr01, 6);
+    printArray(arr01, 6);    
+    cout << "_____ARRAY 02_____" << endl;
+    printArray(arr02, 1);
+    oddFirst(arr02, 1);
+    printArray(arr02, 1);   
+    cout << "_____ARRAY 03_____" << endl;
+    printArray(arr03, 9);
+    oddFirst(arr03, 9);
+    printArray(arr03, 9);
+    cout << "_____ARRAY 05_____" << endl;
+    printArray(arr04, 9);
+    oddFirst(arr04, 9);
+    printArray(arr04, 9);
+
     return;
 }
+
+
 
 void        testReverse(){
     
@@ -105,6 +161,7 @@ void        testReverse(){
     int         arr01[] = {0, -42, -985495, 1293812983, 00, 333333333};
     int         arr02[] = {0};
     int         arr03[] = {3, 3, 3, 3, 3, 3, 3, 3, 3};
+    int         arr04[] = {0,1,2,3,4,5,6,7,8};
 
     cout << "_____ARRAY 00_____" << endl;
     printArray(arr00, 8);
@@ -121,7 +178,11 @@ void        testReverse(){
     cout << "_____ARRAY 03_____" << endl;
     printArray(arr03, 9);
     reverse(arr03, 9);
-    printArray(arr03, 9);    
+    printArray(arr03, 9);
+    cout << "_____ARRAY 05_____" << endl;
+    printArray(arr04, 9);
+    reverse(arr04, 9);
+    printArray(arr04, 9);
 
     return;
 } 
@@ -155,7 +216,7 @@ int         main(){
     
     testSearch();
     testReverse();
-    //testOddFirst();
+    testOddFirst();
     //testLocalMaxima();
     //testLongestRun();
     return 0;
