@@ -6,60 +6,70 @@
 /*   By: dany <github.com/dgerard42>               |;;,      "-._             */
 /*                                                 ';;;,,    ",_ "=-._        */
 /*   Created: 2019/10/13 21:54:00 by dany            ':;;;;,,..-``"-._`"-.    */
-/*   Updated: 2019/10/16 21:44:20 by dany              _/_/`           `'"`   */
+/*   Updated: 2019/10/17 23:49:58 by dany              _/_/`           `'"`   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
+#include <limits.h>
 
 using namespace std;
 
-/*
+const int LEN_00 = 8;
+const int LEN_01 = 6;
+const int LEN_02 = 1;
+const int LEN_03 = 3;
+const int LEN_04 = 9;
 
+/*
 int         longestRun(int arr[], int arraySize){
     
     int     longestRun = 0;
-
+    int     runValue = 0;
+    
+    for (int index = 0; index < arraySize; index++){
+        
+    }
     return longestRun;
 }
+*/
 
 int         localMaxima(int arr[], int maxima[], int size){
     
-    int     globalMax = 0;
+    int     globalMax = INT_MIN;
+    int     maximaIndex = 0;
 
+    for (int index = 0; index < size; index++){
+        if (((index - 1 < 0) || ((index - 1 >= 0) && (arr[index] > arr[index - 1]))) &&
+            ((index + 1 >= size) || ((index + 1 < size) && (arr[index] > arr[index + 1])))){
+                maxima[maximaIndex] = index;
+                maximaIndex++;
+        } if (arr[index] > INT_MIN) {
+            globalMax = arr[index];
+        }
+    }
     return globalMax;
 }
 
-*/
-
 void        oddFirst(int arr[], int arraySize){
 
+    int search = 0;
     int temp = 0;
 
-    for(int index = 0; index < arraySize; index++){
-        if (arr[index] % 2 == 1){
-            for (int search = 0; search < arraySize; search++){
-                if (arr[search] % 2 == 1 && arr[index] <= arr[search]){
-                    for (int shift = 0; (shift + index) < arraySize && (shift + search) < arraySize; shift++){
-                        temp = arr[search + shift];
-                        arr[search + shift] = arr[index + shift];
-                        arr[index + shift] = temp;
-                    } 
-                }else if (arr[search] % 2 == 0){
-                    temp = arr[search];
-                    arr[search] = arr[index];
-                    arr[index] = temp;
-                }  
-            }
-        } 
-    }
-    return;
-}
-
-void        oddFirst(int arr[], int arraySize){
-
-    i       
+    for (int index = 0; index < arraySize - 1; index++){
+        search = index;
+        while (arr[search] % 2 == 0 && search < arraySize - 1){
+            search++;
+        } if (arr[search] % 2 == 0) {
+            index = arraySize;
+        } else {
+            temp = arr[search];
+            arr[search] = arr[index];
+            arr[index] = temp; 
+        }
+    }    
+    return;           
 }
 
 void        reverse(int arr[], int arraySize){
@@ -106,18 +116,50 @@ void        printResult(int error, string name, int testNum){
 }
 
 /*
-
 void        testLongestRun(){
     
     return;
 }
+*/
 
 void        testLocalMaxima(){
+   
+    string      name = "localMaxima()";
+    int         arr00[] = {1,4,6,5,2,7,10,4};
+    int         res00[] = {0,0,0,0,0,0,0,0};
+    int         arr01[] = {0, -42, -985495, 1293812983, 00, 333333333};
+    int         res01[] = {0, 0, 0, 0, 0, 0};
+    int         arr02[] = {0};
+    int         res02[] = {0};
+    int         arr03[] = {3, 3, 3, 3, 3, 3, 3, 3, 3};
+    int         res03[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int         arr04[] = {0,1,2,3,4,5,6,7,8};
+    int         res04[] = {0,0,0,0,0,0,0,0,0};
+    
+    cout << "__________ " << name << " __________" << endl;
+    cout << "_____ARRAY 00_____" << endl;
+    printArray(arr00, LEN_00);
+    localMaxima(arr00, res00, LEN_00);
+    printArray(res00, LEN_00);    
+    cout << "_____ARRAY 01_____" << endl;
+    printArray(arr01, LEN_01);
+    localMaxima(arr01, res01, LEN_01);
+    printArray(res01, LEN_01);    
+    cout << "_____ARRAY 02_____" << endl;
+    printArray(arr02, LEN_02);
+    localMaxima(arr02, res02, LEN_02);
+    printArray(res02, LEN_02);   
+    cout << "_____ARRAY 03_____" << endl;
+    printArray(arr03, LEN_03);
+    localMaxima(arr03, res03, LEN_03);
+    printArray(res03, LEN_03);
+    cout << "_____ARRAY 04_____" << endl;
+    printArray(arr04, LEN_04);
+    localMaxima(arr04, res04, LEN_04);
+    printArray(res04, LEN_04);
 
     return;
 } 
-
-*/
 
 void        testOddFirst(){
 
@@ -128,6 +170,7 @@ void        testOddFirst(){
     int         arr03[] = {3, 3, 3, 3, 3, 3, 3, 3, 3};
     int         arr04[] = {0,1,2,3,4,5,6,7,8};
 
+    cout << "__________ " << name << " __________" << endl;
     cout << "_____ARRAY 00_____" << endl;
     printArray(arr00, 8);
     oddFirst(arr00, 8);
@@ -152,8 +195,6 @@ void        testOddFirst(){
     return;
 }
 
-
-
 void        testReverse(){
     
     string      name = "reverse()";
@@ -162,7 +203,8 @@ void        testReverse(){
     int         arr02[] = {0};
     int         arr03[] = {3, 3, 3, 3, 3, 3, 3, 3, 3};
     int         arr04[] = {0,1,2,3,4,5,6,7,8};
-
+    
+    cout << "__________ " << name << " __________" << endl;
     cout << "_____ARRAY 00_____" << endl;
     printArray(arr00, 8);
     reverse(arr00, 8);
@@ -217,7 +259,7 @@ int         main(){
     testSearch();
     testReverse();
     testOddFirst();
-    //testLocalMaxima();
+    testLocalMaxima();
     //testLongestRun();
     return 0;
 }

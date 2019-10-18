@@ -1,0 +1,23 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                   .--.                       #
+#    07_algo.txt                                 __/ o  ".                     #
+#                                               `  ),    "-.                   #
+#    By: dany <github.com/dgerard42>               |;;,      "-._              #
+#                                                  ';;;,,    ",_ "=-._         #
+#    Created: 2019/10/17 09:14:47 by dany            ':;;;;,,..-``"-._`"-.     #
+#    Updated: 2019/10/17 16:37:31 by dany              _/_/`           `'"`    #
+#                                                                              #
+# **************************************************************************** #
+
+_____ODD FIRST_____
+- use quicksort, but insead of checking only if less than or greater than,
+    prioritize the odd numbers to the front
+
+_____LOCAL MAX_____
+- go thru the array forward
+- if index of array is
+
+_____BEFORE TURN IN_____
+- make the ints in the tests for the array sizes const ints!!
+
