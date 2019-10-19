@@ -6,7 +6,7 @@
 /*   By: dany <github.com/dgerard42>               |;;,      "-._             */
 /*                                                 ';;;,,    ",_ "=-._        */
 /*   Created: 2019/10/13 21:54:00 by dany            ':;;;;,,..-``"-._`"-.    */
-/*   Updated: 2019/10/17 23:49:58 by dany              _/_/`           `'"`   */
+/*   Updated: 2019/10/18 23:53:40 by dany              _/_/`           `'"`   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,23 @@ const int LEN_02 = 1;
 const int LEN_03 = 3;
 const int LEN_04 = 9;
 
-/*
 int         longestRun(int arr[], int arraySize){
     
     int     longestRun = 0;
-    int     runValue = 0;
+    int     search = 0;
     
     for (int index = 0; index < arraySize; index++){
-        
+        search = index;
+        while (arr[index] == arr[search] && search < arraySize - 1){
+            search++;
+        } if (search - index > longestRun){
+            longestRun = search - index;
+        } if (search > index) { 
+            index = search - 1; //to save time, the algorithm moves the index to the end of the last run
+        }
     }
-    return longestRun;
+    return (longestRun == 1) ? 0 : longestRun; //return 0 if the largest run was 
 }
-*/
 
 int         localMaxima(int arr[], int maxima[], int size){
     
@@ -115,12 +120,25 @@ void        printResult(int error, string name, int testNum){
     return;
 }
 
-/*
+
 void        testLongestRun(){
-    
+   
+    string      name = "longestRun()";
+    int         arr00[] = {1,4,6,5,2,7,10,4};
+    int         arr01[] = {0, -42, -985495, 1293812983, 00, 333333333};
+    int         arr02[] = {0};
+    int         arr03[] = {2,2,0};
+    int         arr04[] = {3, 3, 3, 3, 3, 3, 3, 3, 3};
+
+    (longestRun(arr00, LEN_00) == 0) ? printResult(0, name, 0) : printResult(1, name, 0);
+    (longestRun(arr01, LEN_01) == 0) ? printResult(0, name, 1) : printResult(1, name, 1);
+    (longestRun(arr02, LEN_02) == 0) ? printResult(0, name, 2) : printResult(1, name, 2);
+    (longestRun(arr03, LEN_03) == 2) ? printResult(0, name, 3) : printResult(1, name, 3);
+    (longestRun(arr04, LEN_04) == 9) ? printResult(0, name, 4) : printResult(1, name, 4);
+    cout << longestRun(arr04, LEN_04) << endl;
+
     return;
 }
-*/
 
 void        testLocalMaxima(){
    
@@ -260,6 +278,6 @@ int         main(){
     testReverse();
     testOddFirst();
     testLocalMaxima();
-    //testLongestRun();
+    testLongestRun();
     return 0;
 }
