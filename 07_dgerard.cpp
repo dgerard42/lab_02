@@ -6,7 +6,7 @@
 /*   By: dany <github.com/dgerard42>               |;;,      "-._             */
 /*                                                 ';;;,,    ",_ "=-._        */
 /*   Created: 2019/10/13 21:54:00 by dany            ':;;;;,,..-``"-._`"-.    */
-/*   Updated: 2019/10/18 23:53:40 by dany              _/_/`           `'"`   */
+/*   Updated: 2019/10/20 15:12:03 by dany              _/_/`           `'"`   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,40 +21,44 @@ const int LEN_01 = 6;
 const int LEN_02 = 1;
 const int LEN_03 = 3;
 const int LEN_04 = 9;
+const int LEN_05 = 11;
 
 int         longestRun(int arr[], int arraySize){
     
     int     longestRun = 0;
     int     search = 0;
     
-    for (int index = 0; index < arraySize; index++){
+    for (int index = 0; index < arraySize; index++){ //iterate through array
         search = index;
-        while (arr[index] == arr[search] && search < arraySize - 1){
+        while (arr[index] == arr[search] && search < arraySize){//for as long as there is a run, iterate
             search++;
-        } if (search - index > longestRun){
+        } if (search - index > longestRun){ //if this run is longer than any previous run, save its length
             longestRun = search - index;
         } if (search > index) { 
             index = search - 1; //to save time, the algorithm moves the index to the end of the last run
         }
     }
-    return (longestRun == 1) ? 0 : longestRun; //return 0 if the largest run was 
+    return (longestRun == 1) ? 0 : longestRun; //return 0 if the largest run was only 1 digit. else, resturn run size
 }
+
+/* 
+    localMaxima() - iterate through the array. if the number at any index is larger than the
+    two numbers on either side, or it is at the start or end and the one side number is smaller,
+    then add the index of this number to the result array. return result array size.
+*/
 
 int         localMaxima(int arr[], int maxima[], int size){
     
-    int     globalMax = INT_MIN;
     int     maximaIndex = 0;
 
     for (int index = 0; index < size; index++){
         if (((index - 1 < 0) || ((index - 1 >= 0) && (arr[index] > arr[index - 1]))) &&
-            ((index + 1 >= size) || ((index + 1 < size) && (arr[index] > arr[index + 1])))){
+            ((index + 1 >= size) || ((index + 1 < size) && (arr[index] > arr[index + 1])))){ 
                 maxima[maximaIndex] = index;
                 maximaIndex++;
-        } if (arr[index] > INT_MIN) {
-            globalMax = arr[index];
         }
     }
-    return globalMax;
+    return maximaIndex;
 }
 
 void        oddFirst(int arr[], int arraySize){
@@ -87,6 +91,11 @@ void        reverse(int arr[], int arraySize){
         arr[(arraySize - 1) - index] = temp; 
     }
 }
+
+/*
+    search() - if searching from the left, set index to zero. else,
+    set to the end of the section which is to be searched. if
+*/
 
 int         search(int arr[], int n, int val, bool left){
 
@@ -129,13 +138,14 @@ void        testLongestRun(){
     int         arr02[] = {0};
     int         arr03[] = {2,2,0};
     int         arr04[] = {3, 3, 3, 3, 3, 3, 3, 3, 3};
+    int         arr05[] = {-2, -2, 0, 4, 1, 0, 48759, 5, 5, 5, 6};
 
     (longestRun(arr00, LEN_00) == 0) ? printResult(0, name, 0) : printResult(1, name, 0);
     (longestRun(arr01, LEN_01) == 0) ? printResult(0, name, 1) : printResult(1, name, 1);
     (longestRun(arr02, LEN_02) == 0) ? printResult(0, name, 2) : printResult(1, name, 2);
     (longestRun(arr03, LEN_03) == 2) ? printResult(0, name, 3) : printResult(1, name, 3);
     (longestRun(arr04, LEN_04) == 9) ? printResult(0, name, 4) : printResult(1, name, 4);
-    cout << longestRun(arr04, LEN_04) << endl;
+    (longestRun(arr05, LEN_05) == 3) ? printResult(0, name, 5) : printResult(1, name, 5);
 
     return;
 }
@@ -144,36 +154,36 @@ void        testLocalMaxima(){
    
     string      name = "localMaxima()";
     int         arr00[] = {1,4,6,5,2,7,10,4};
-    int         res00[] = {0,0,0,0,0,0,0,0};
+    int         res00[] = {-1,-1,-1,-1,-1,-1,-1,-1};
     int         arr01[] = {0, -42, -985495, 1293812983, 00, 333333333};
-    int         res01[] = {0, 0, 0, 0, 0, 0};
+    int         res01[] = {-1, -1, -1, -1, -1, -1};
     int         arr02[] = {0};
-    int         res02[] = {0};
+    int         res02[] = {-1};
     int         arr03[] = {3, 3, 3, 3, 3, 3, 3, 3, 3};
-    int         res03[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int         res03[] = {-1, -1, -1, -1, -1, -1, -1, -1, -1};
     int         arr04[] = {0,1,2,3,4,5,6,7,8};
-    int         res04[] = {0,0,0,0,0,0,0,0,0};
+    int         res04[] = {-1,-1,-1,-1,-1,-1,-1,-1,-1};
     
     cout << "__________ " << name << " __________" << endl;
     cout << "_____ARRAY 00_____" << endl;
     printArray(arr00, LEN_00);
-    localMaxima(arr00, res00, LEN_00);
-    printArray(res00, LEN_00);    
+    (localMaxima(arr00, res00, LEN_00) == 2) ? printResult(0, name, 0) : printResult(1, name, 0);
+    printArray(res00, LEN_00);
     cout << "_____ARRAY 01_____" << endl;
     printArray(arr01, LEN_01);
-    localMaxima(arr01, res01, LEN_01);
+    (localMaxima(arr01, res01, LEN_01) == 3) ? printResult(0, name, 1) : printResult(1, name, 1);
     printArray(res01, LEN_01);    
     cout << "_____ARRAY 02_____" << endl;
     printArray(arr02, LEN_02);
-    localMaxima(arr02, res02, LEN_02);
+    (localMaxima(arr02, res02, LEN_02) == 1) ? printResult(0, name, 2) : printResult(1, name, 2);
     printArray(res02, LEN_02);   
     cout << "_____ARRAY 03_____" << endl;
     printArray(arr03, LEN_03);
-    localMaxima(arr03, res03, LEN_03);
+    (localMaxima(arr03, res03, LEN_03) == 0) ? printResult(0, name, 3) : printResult(1, name, 3);
     printArray(res03, LEN_03);
     cout << "_____ARRAY 04_____" << endl;
     printArray(arr04, LEN_04);
-    localMaxima(arr04, res04, LEN_04);
+    (localMaxima(arr04, res04, LEN_04) == 1) ? printResult(0, name, 4) : printResult(1, name, 4);
     printArray(res04, LEN_04);
 
     return;

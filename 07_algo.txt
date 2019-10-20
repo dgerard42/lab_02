@@ -6,13 +6,14 @@
 #    By: dany <github.com/dgerard42>               |;;,      "-._              #
 #                                                  ';;;,,    ",_ "=-._         #
 #    Created: 2019/10/17 09:14:47 by dany            ':;;;;,,..-``"-._`"-.     #
-#    Updated: 2019/10/17 16:37:31 by dany              _/_/`           `'"`    #
+#    Updated: 2019/10/20 14:49:57 by dany              _/_/`           `'"`    #
 #                                                                              #
 # **************************************************************************** #
 
 _____ODD FIRST_____
 - use quicksort, but insead of checking only if less than or greater than,
     prioritize the odd numbers to the front
+- nope, don't do that. you were overthinking the problem
 
 _____LOCAL MAX_____
 - go thru the array forward
@@ -21,3 +22,9 @@ _____LOCAL MAX_____
 _____BEFORE TURN IN_____
 - make the ints in the tests for the array sizes const ints!!
 
+_____LONGEST RUN_____
+- 2d for loop. one loop goes through the array, the other checks the next numbers
+    for a match until there is not a match
+- after exit from the second loop, set index of upper loop to whatever the last
+    index of the second loop was
+- 
