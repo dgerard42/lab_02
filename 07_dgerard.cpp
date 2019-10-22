@@ -6,7 +6,7 @@
 /*   By: dany <github.com/dgerard42>               |;;,      "-._             */
 /*                                                 ';;;,,    ",_ "=-._        */
 /*   Created: 2019/10/13 21:54:00 by dany            ':;;;;,,..-``"-._`"-.    */
-/*   Updated: 2019/10/20 15:12:03 by dany              _/_/`           `'"`   */
+/*   Updated: 2019/10/21 19:05:52 by dany              _/_/`           `'"`   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ int         localMaxima(int arr[], int maxima[], int size){
     return maximaIndex;
 }
 
+/*
+    oddFirst() - iterate through the array. for each item, if it is even, search for the next odd.
+    if the search stops and the number it stops on is even, then there are no more odd numbers in
+    the array. 
+*/
+
 void        oddFirst(int arr[], int arraySize){
 
     int search = 0;
@@ -81,6 +87,11 @@ void        oddFirst(int arr[], int arraySize){
     return;           
 }
 
+/*
+    reverse() - iterate through half the array. for each item, swap with the item on the opposite
+    end of the array 
+*/
+
 void        reverse(int arr[], int arraySize){
     
     int     temp = 0;
@@ -93,8 +104,9 @@ void        reverse(int arr[], int arraySize){
 }
 
 /*
-    search() - if searching from the left, set index to zero. else,
-    set to the end of the section which is to be searched. if
+    search() - if searching from the left, set index to zero. else, set to the end of the section
+    which is to be searched. if searching from left, move forward until at end, else move
+    backwards until at front. if value is found, return index.
 */
 
 int         search(int arr[], int n, int val, bool left){
