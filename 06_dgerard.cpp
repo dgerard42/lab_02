@@ -6,7 +6,7 @@
 /*   By: dany <github.com/dgerard42>               |;;,      "-._             */
 /*                                                 ';;;,,    ",_ "=-._        */
 /*   Created: 2019/10/11 19:13:00 by dany            ':;;;;,,..-``"-._`"-.    */
-/*   Updated: 2019/10/21 23:59:38 by dany              _/_/`           `'"`   */
+/*   Updated: 2019/10/22 00:08:17 by dany              _/_/`           `'"`   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,26 @@ float       squareroot(float number){
     return nextGuess;
 }
 
-void        runTest(int testNum, float result, float expected, float test){
+void        runTest(int testNum, float input, float expected){
     
-    float result = squareroot(test);
+    float result = squareroot(input);
 
-    ">>TEST " << testNum << " for sqrt of " << test << ". expected result == " << expected
-            << ". actual result == " << result << "." << endl;
+    cout <<">>TEST " << testNum << " for sqrt of " << input << ". expected result == "
+            << expected << ". actual result == " << result << "." << endl;
     
     return;
 }
 
 int         main(){
    
-    string name = "squareroot()";
     float result = 0.0;
 
-    result = squareroot(394820.0);
-    (result == 628.347046) ? (printResult(0, name, 0, result)) : (printResult(1, name, 0, result));
-    result = squareroot(-42.0);
-    (result == -1.0) ? (printResult(0, name, 1, result)) : (printResult(1, name, 1, result));
-    result = squareroot(numeric_limits<float>::max());
-    (result == 1.8446744e+19) ? (printResult(0, name, 2, result)) : (printResult(1, name, 2, result));
-    result = squareroot(42);
-    (result == 6.4807407) ? (printResult(0, name, 1, result)) : (printResult(1, name, 1, result));
-    result = squareroot(121);
-    (result == 11.0) ? (printResult(0, name, 1, result)) : (printResult(1, name, 1, result));
+
+    runTest(0, 394820.0, 628.347046); 
+    runTest(1, -42, -1);
+    runTest(2, numeric_limits<float>::max(), 1.8446744e+19);
+    runTest(3, 42, 6.4807407);
+    runTest(4, 121, 11);
 
     return 0;
 }
