@@ -6,7 +6,7 @@
 /*   By: dany <github.com/dgerard42>               |;;,      "-._             */
 /*                                                 ';;;,,    ",_ "=-._        */
 /*   Created: 2019/10/03 10:30:36 by dany            ':;;;;,,..-``"-._`"-.    */
-/*   Updated: 2019/10/03 11:02:35 by dany              _/_/`           `'"`   */
+/*   Updated: 2019/10/22 12:01:22 by dany              _/_/`           `'"`   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,7 @@ void     cycleKarel(int coords[], char board[][BOARD_SIZE]){
         else if (input == "quit();"){
             cout << ">>goodbye friend" << endl;
             break;
-        }
-        else {
+        } else {
             cout << ">>Please enter one of the valid commands, which are as";
             cout << " follows: move();, turnLeft();, quit();" << endl;
         }
@@ -110,8 +109,8 @@ void     cycleKarel(int coords[], char board[][BOARD_SIZE]){
 }
 
 
-int     main()
-{
+int     main(){
+
     int     coords[2] = {0,0};
     char    board[BOARD_SIZE][BOARD_SIZE];
     
